@@ -269,6 +269,163 @@
             transform: none;
         }
 
+
+.help-btn {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
+    margin-left: 10px;
+}
+
+.help-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
+    background: linear-gradient(135deg, #8e44ad, #7d3c98);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    padding: 20px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255, 255, 255, 0.05) 10px,
+        rgba(255, 255, 255, 0.05) 20px
+    );
+    animation: slide 20s linear infinite;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.8em;
+    position: relative;
+    z-index: 1;
+}
+
+
+.modal-body {
+    padding: 30px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.legend-section {
+    margin-bottom: 25px;
+}
+
+.legend-section h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+.legend-syntax {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    background: #2c3e50;
+    color: #ecf0f1;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-right: 15px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    min-width: 180px;
+}
+
+.legend-description {
+    flex: 1;
+    color: #34495e;
+    line-height: 1.5;
+}
+
+.legend-example {
+    font-style: italic;
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        max-height: 80vh;
+    }
+    
+    .legend-item {
+        flex-direction: column;
+    }
+    
+    .legend-syntax {
+        margin-right: 0;
+        margin-bottom: 10px;
+        min-width: auto;
+        width: 100%;
+    }
+}
+
+
         .button-group {
             display: flex;
             align-items: center;
@@ -454,6 +611,182 @@
                 font-size: 2em;
             }
         }
+
+
+
+.filename-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.filename-modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 0;
+    border: none;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    animation: filenameModalSlideIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    overflow: hidden;
+}
+
+@keyframes filenameModalSlideIn {
+    from { 
+        transform: translateY(-100px) scale(0.8); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateY(0) scale(1); 
+        opacity: 1; 
+    }
+}
+
+.filename-modal-header {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    padding: 25px 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.filename-modal-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 12px,
+        rgba(255, 255, 255, 0.05) 12px,
+        rgba(255, 255, 255, 0.05) 24px
+    );
+    animation: slide 25s linear infinite;
+}
+
+.filename-modal-header h3 {
+    margin: 0;
+    font-size: 1.6em;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filename-modal-body {
+    padding: 30px;
+}
+
+.filename-input-group {
+    margin-bottom: 25px;
+}
+
+.filename-input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #34495e;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.filename-input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 2px solid #bdc3c7;
+    border-radius: 12px;
+    font-size: 1.1em;
+    transition: all 0.3s ease;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+}
+
+.filename-input:focus {
+    outline: none;
+    border-color: #e74c3c;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.2);
+    background: white;
+}
+
+.filename-modal-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}
+
+.filename-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    min-width: 120px;
+}
+
+.filename-btn-cancel {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    color: white;
+    box-shadow: 0 4px 15px rgba(149, 165, 166, 0.3);
+}
+
+.filename-btn-cancel:hover {
+    background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+}
+
+.filename-btn-save {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.filename-btn-save:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.filename-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.filename-hint {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+@media (max-width: 600px) {
+    .filename-modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+    
+    .filename-modal-buttons {
+        flex-direction: column;
+    }
+    
+    .filename-btn {
+        width: 100%;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -492,11 +825,16 @@
         <div class="content-section hidden" id="contentSection">
             <div class="editor-panel">
                 <h3>
-                    📄 Sorgente Markdown
-                    <button class="save-btn" id="saveBtn" onclick="saveMarkdown()" disabled>
-                        💾 Salva .md
-                    </button>
-                </h3>
+    📄 Sorgente Markdown
+    <div class="button-group">
+        <button class="save-btn" id="saveBtn" onclick="saveMarkdown()" disabled>
+            💾 Salva .md
+        </button>
+        <button class="help-btn" onclick="openMarkdownLegend()">
+            ❓ Guida
+        </button>
+    </div>
+</h3>
                 <textarea class="markdown-editor" id="markdownEditor" placeholder="Il contenuto del file apparirà qui..."></textarea>
             </div>
             <div class="preview-panel">
@@ -712,124 +1050,153 @@
         }
 
         function exportToPDF() {
-            // Crea una copia temporanea del contenuto per il PDF
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = markdownPreview.innerHTML;
-            tempDiv.style.cssText = `
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                line-height: 1.6;
-                color: #2c3e50;
-                max-width: 100%;
-                padding: 20px;
-            `;
-            
-            // Applica stili specifici per il PDF con miglioramenti per titoli
-            const elements = tempDiv.querySelectorAll('*');
-            elements.forEach(el => {
-                el.style.pageBreakInside = 'avoid';
-                el.style.breakInside = 'avoid';
-                
-                if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(el.tagName)) {
-                    // Regole specifiche per evitare titoli orfani
-                    el.style.pageBreakAfter = 'avoid';
-                    el.style.breakAfter = 'avoid';
-                    el.style.pageBreakBefore = 'auto';
-                    el.style.breakBefore = 'auto';
-                    el.style.marginTop = '30px';
-                    el.style.marginBottom = '15px';
-                    el.style.orphans = '4'; // Almeno 4 righe dopo il titolo
-                    el.style.widows = '4';  // Almeno 4 righe prima del titolo
-                    
-                    // Aggiunge uno span invisibile dopo ogni titolo per forzare il contenuto insieme
-                    const keepTogether = document.createElement('span');
-                    keepTogether.style.cssText = `
-                        display: block;
-                        height: 0;
-                        page-break-inside: avoid;
-                        break-inside: avoid;
-                        margin-bottom: 10px;
-                    `;
-                    el.appendChild(keepTogether);
-                }
-                
-                if (el.tagName === 'P') {
-                    el.style.marginBottom = '12px';
-                    el.style.textAlign = 'justify';
-                    el.style.orphans = '3';
-                    el.style.widows = '3';
-                }
-                
-                if (el.tagName === 'IMG') {
-                    el.style.maxWidth = '100%';
-                    el.style.height = 'auto';
-                    el.style.display = 'block';
-                    el.style.margin = '20px auto';
-                    el.style.pageBreakInside = 'avoid';
-                    el.style.breakInside = 'avoid';
-                    el.style.pageBreakBefore = 'auto';
-                    el.style.pageBreakAfter = 'auto';
-                }
-                
-                if (el.tagName === 'PRE') {
-                    el.style.whiteSpace = 'pre-wrap';
-                    el.style.wordWrap = 'break-word';
-                    el.style.fontSize = '0.9em';
-                }
-            });
+    // Apri il modal per il nome file
+    openFilenameModal();
+}
 
-            const opt = {
-                margin: [0.8, 0.6, 0.8, 0.6],
-                filename: currentFileName + '.pdf',
-                image: { 
-                    type: 'jpeg', 
-                    quality: 0.95,
-                    crossOrigin: 'anonymous'
-                },
-                html2canvas: { 
-                    scale: 1.5,
-                    useCORS: true,
-                    allowTaint: false,
-                    letterRendering: true,
-                    scrollX: 0,
-                    scrollY: 0,
-                    backgroundColor: '#ffffff'
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'a4', 
-                    orientation: 'portrait',
-                    compress: true,
-                    precision: 2
-                },
-                pagebreak: { 
-                    mode: ['avoid-all', 'css', 'legacy'],
-                    before: '.page-break-before',
-                    after: '.page-break-after',
-                    avoid: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'table', 'tr', 'td']
-                }
-            };
+function openFilenameModal() {
+    const modal = document.getElementById('filenameModal');
+    const input = document.getElementById('pdfFilenameInput');
+    
+    // Precompila con il nome corrente
+    input.value = currentFileName + '.pdf';
+    
+    // Mostra il modal
+    modal.style.display = 'block';
+    
+    // Focus sull'input e seleziona tutto il testo
+    setTimeout(() => {
+        input.focus();
+        input.select();
+    }, 100);
+}
 
-            // Mostra un messaggio di caricamento
-            const originalText = pdfBtn.textContent;
-            pdfBtn.textContent = '⏳ Generando PDF...';
-            pdfBtn.disabled = true;
+function closeFilenameModal() {
+    const modal = document.getElementById('filenameModal');
+    modal.style.display = 'none';
+}
 
-            html2pdf().set(opt).from(tempDiv).save().then(() => {
-                // Ripristina il pulsante
-                pdfBtn.textContent = originalText;
-                pdfBtn.disabled = false;
-                
-                // Rimuove l'elemento temporaneo
-                tempDiv.remove();
-            }).catch((error) => {
-                console.error('Errore durante la generazione del PDF:', error);
-                alert('Errore durante la generazione del PDF. Riprova.');
-                pdfBtn.textContent = originalText;
-                pdfBtn.disabled = false;
-                tempDiv.remove();
-            });
+function confirmPdfExport() {
+    const input = document.getElementById('pdfFilenameInput');
+    const userFileName = input.value.trim();
+    
+    if (!userFileName) {
+        alert('Per favore inserisci un nome per il file');
+        input.focus();
+        return;
+    }
+    
+    // Assicurati che abbia l'estensione .pdf
+    const finalFileName = userFileName.endsWith('.pdf') ? userFileName : userFileName + '.pdf';
+    
+    // Chiudi il modal
+    closeFilenameModal();
+    
+    // Avvia l'esportazione vera e propria
+    performPdfExport(finalFileName);
+}
+
+async function performPdfExport(filename) {
+    // Crea una copia temporanea del contenuto per il PDF
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = markdownPreview.innerHTML;
+    tempDiv.style.cssText = `
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        line-height: 1.6;
+        color: #2c3e50;
+        max-width: 100%;
+        padding: 20px;
+    `;
+    
+    // Applica stili specifici per il PDF
+    const elements = tempDiv.querySelectorAll('*');
+    elements.forEach(el => {
+        el.style.pageBreakInside = 'avoid';
+        el.style.breakInside = 'avoid';
+        
+        if (['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].includes(el.tagName)) {
+            el.style.pageBreakAfter = 'avoid';
+            el.style.breakAfter = 'avoid';
+            el.style.marginTop = '30px';
+            el.style.marginBottom = '15px';
         }
+        
+        if (el.tagName === 'P') {
+            el.style.marginBottom = '12px';
+            el.style.textAlign = 'justify';
+        }
+        
+        if (el.tagName === 'IMG') {
+            el.style.maxWidth = '100%';
+            el.style.height = 'auto';
+            el.style.display = 'block';
+            el.style.margin = '20px auto';
+        }
+    });
 
+    const opt = {
+        margin: [0.8, 0.6, 0.8, 0.6],
+        filename: filename,
+        image: { type: 'jpeg', quality: 0.95 },
+        html2canvas: { scale: 1.5 },
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Mostra un messaggio di caricamento
+    const originalText = pdfBtn.textContent;
+    pdfBtn.textContent = '⏳ Generando PDF...';
+    pdfBtn.disabled = true;
+
+    try {
+        // Genera il PDF come blob
+        const pdfOutput = await html2pdf().set(opt).from(tempDiv).outputPdf('blob');
+        
+        // Usa l'API File System Access per salvare
+        if ('showSaveFilePicker' in window) {
+            try {
+                const handle = await window.showSaveFilePicker({
+                    suggestedName: filename,
+                    types: [{
+                        description: 'PDF Document',
+                        accept: { 'application/pdf': ['.pdf'] }
+                    }]
+                });
+                
+                const writable = await handle.createWritable();
+                await writable.write(pdfOutput);
+                await writable.close();
+            } catch (err) {
+                if (err.name !== 'AbortError') {
+                    // Fallback al download automatico se l'utente annulla
+                    downloadBlob(pdfOutput, filename);
+                }
+            }
+        } else {
+            // Fallback per browser che non supportano showSaveFilePicker
+            downloadBlob(pdfOutput, filename);
+        }
+    } catch (error) {
+        console.error('Errore durante la generazione del PDF:', error);
+        alert('Errore durante la generazione del PDF. Riprova.');
+    } finally {
+        // Ripristina il pulsante
+        pdfBtn.textContent = originalText;
+        pdfBtn.disabled = false;
+        tempDiv.remove();
+    }
+}
+
+// Funzione helper per il download del blob
+function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+}
         function formatFileSize(bytes) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
@@ -879,6 +1246,236 @@ function hello() {
 - Le immagini vengono incorporate nel PDF`;
 
         updatePreview(exampleMarkdown);
+
+function openMarkdownLegend() {
+    document.getElementById('markdownModal').style.display = 'block';
+}
+
+function closeMarkdownLegend() {
+    document.getElementById('markdownModal').style.display = 'none';
+}
+
+// Chiudi con click esterno
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('markdownModal');
+    if (event.target === modal) {
+        closeMarkdownLegend();
+    }
+});
+
+// Chiudi con tasto ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modal = document.getElementById('markdownModal');
+        if (modal.style.display === 'block') {
+            closeMarkdownLegend();
+        }
+    }
+});
+
+
+// Gestione eventi per il modal nome file
+document.getElementById('pdfFilenameInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        confirmPdfExport();
+    }
+    if (e.key === 'Escape') {
+        closeFilenameModal();
+    }
+});
+
+// Chiudi modal con click esterno
+window.addEventListener('click', function(event) {
+    const modal = document.getElementById('filenameModal');
+    if (event.target === modal) {
+        closeFilenameModal();
+    }
+});
+
+// Chiudi modal con tasto ESC
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modal = document.getElementById('filenameModal');
+        if (modal.style.display === 'block') {
+            closeFilenameModal();
+        }
+    }
+});
+
     </script>
+
+   <!-- Modal per la legenda Markdown -->
+<div id="markdownModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+    <h2>📚 Guida Rapida Markdown</h2>
+    <p style="font-size: 0.9em; opacity: 0.8; margin: 5px 0 0 0;">             Clicca fuori dalla finestra o premi ESC per chiudere</p>
+</div>
+        <div class="modal-body">
+            <div class="legend-section">
+		<h3>🔤 Titoli</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax"># Titolo H1</code>
+                    <div class="legend-description">
+                        Titolo principale
+                        <div class="legend-example">Usa per il titolo del documento</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">## Titolo H2</code>
+                    <div class="legend-description">
+                        Sottotitolo
+                        <div class="legend-example">Per sezioni principali</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">### Titolo H3</code>
+                    <div class="legend-description">
+                        Sottosezione
+                        <div class="legend-example">Per argomenti specifici</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>✏️ Formattazione Testo</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax">**testo grassetto**</code>
+                    <div class="legend-description">
+                        Rende il testo in <strong>grassetto</strong>
+                        <div class="legend-example">Per enfatizzare parole importanti</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">*testo corsivo*</code>
+                    <div class="legend-description">
+                        Rende il testo in <em>corsivo</em>
+                        <div class="legend-example">Per dare enfasi leggera</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">`codice`</code>
+                    <div class="legend-description">
+                        Formatta come codice inline
+                        <div class="legend-example">Per comandi o variabili - Fai l'accento grave con ALT+96</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">~~testo barrato~~</code>
+                    <div class="legend-description">
+                        Rende il testo <del>barrato</del>
+                        <div class="legend-example">Per correzioni o testo obsoleto - Fai il simbolo "tilde" con ALT+126</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>📝 Liste</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax">- Elemento lista<br>- Altro elemento</code>
+                    <div class="legend-description">
+                        Lista puntata
+                        <div class="legend-example">Usa - o * per ogni elemento</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">1. Primo elemento<br>2. Secondo elemento</code>
+                    <div class="legend-description">
+                        Lista numerata
+                        <div class="legend-example">Numerazione automatica</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">- [x] Completato<br>- [ ] Da fare</code>
+                    <div class="legend-description">
+                        Lista di controllo
+                        <div class="legend-example">Per checklist e TODO</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>🔗 Link e Immagini</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax">[testo link](http://url)</code>
+                    <div class="legend-description">
+                        Crea un collegamento
+                        <div class="legend-example">Il testo sarà cliccabile</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">![alt text](immagine.jpg)</code>
+                    <div class="legend-description">
+                        Inserisce un'immagine
+                        <div class="legend-example">Alt text per accessibilità</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>💻 Codice</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax">```javascript<br>codice qui<br>```</code>
+                    <div class="legend-description">
+                        Blocco di codice con sintassi
+                        <div class="legend-example">Specifica il linguaggio per l'evidenziazione - Fai l'accento grave con ALT+96</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>📊 Tabelle</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax">| Colonna 1 | Colonna 2 |<br>|-----------|-----------|<br>| Dato 1    | Dato 2    |</code>
+                    <div class="legend-description">
+                        Crea una tabella
+                        <div class="legend-example">La seconda riga definisce l'allineamento</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend-section">
+                <h3>💬 Altri Elementi</h3>
+                <div class="legend-item">
+                    <code class="legend-syntax">> Questo è un blockquote</code>
+                    <div class="legend-description">
+                        Citazione o nota importante
+                        <div class="legend-example">Per evidenziare contenuti speciali</div>
+                    </div>
+                </div>
+                <div class="legend-item">
+                    <code class="legend-syntax">---</code>
+                    <div class="legend-description">
+                        Linea orizzontale
+                        <div class="legend-example">Per separare sezioni</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal per nome file PDF -->
+<div id="filenameModal" class="filename-modal">
+    <div class="filename-modal-content">
+        <div class="filename-modal-header">
+            <h3>📄 Salva PDF</h3>
+        </div>
+        <div class="filename-modal-body">
+            <div class="filename-input-group">
+                <label for="pdfFilenameInput">Nome del file:</label>
+                <input type="text" id="pdfFilenameInput" class="filename-input" placeholder="documento.pdf">
+                <div class="filename-hint">L'estensione .pdf verrà aggiunta automaticamente se mancante</div>
+            </div>
+            <div class="filename-modal-buttons">
+                <button class="filename-btn filename-btn-cancel" onclick="closeFilenameModal()">
+                    ❌ Annulla
+                </button>
+                <button class="filename-btn filename-btn-save" id="confirmPdfSave" onclick="confirmPdfExport()">
+                    💾 Salva PDF
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
