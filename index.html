@@ -38,7 +38,7 @@
         .header {
             background: linear-gradient(135deg, #2c3e50, #3498db);
             color: white;
-            padding: 30px;
+            padding: 6px 10px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -67,37 +67,38 @@
         }
 
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 1.2em;
+            margin-bottom: 0;
             position: relative;
             z-index: 1;
         }
 
         .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
+            font-size: 0.75em;
+            opacity: 0.8;
             position: relative;
             z-index: 1;
         }
 
         .controls-container {
             display: flex;
-            gap: 15px;
-            margin: 10px 30px;
+            gap: 10px;
+            margin: 8px 15px;
         }
 
         .upload-section {
             flex: 1;
-            padding: 10px;
+            padding: 6px 12px;
             text-align: center;
             background: linear-gradient(145deg, #f8f9fa, #e9ecef);
-            border-radius: 12px;
-            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            border: 1px dashed #6c757d;
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
+            gap: 8px;
         }
 
         .upload-section:hover {
@@ -109,15 +110,16 @@
         .image-upload-section {
             flex: 1;
             background: linear-gradient(145deg, #f0f8f5, #d5f4e6);
-            padding: 10px;
-            border-radius: 12px;
-            border: 2px dashed #27ae60;
+            padding: 6px 12px;
+            border-radius: 10px;
+            border: 1px dashed #27ae60;
             text-align: center;
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
+            gap: 8px;
         }
 
         .image-upload-section:hover {
@@ -128,9 +130,14 @@
         .image-gallery {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin: 0 15px;
             justify-content: center;
+        }
+
+        .image-gallery:not(:empty) {
+            margin-top: 5px;
+            margin-bottom: 10px;
         }
 
         .image-item {
@@ -139,10 +146,10 @@
         }
 
         .image-thumbnail {
-            width: 100px;
-            height: 100px;
+            width: 60px;
+            height: 60px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 6px;
             border: 2px solid #ddd;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -188,30 +195,31 @@
         .upload-btn {
             background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
-            padding: 10px 20px;
+            padding: 6px 14px;
             border: none;
             border-radius: 50px;
-            font-size: 1em;
+            font-size: 0.85em;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 4px 10px rgba(52, 152, 219, 0.2);
+            white-space: nowrap;
         }
 
         .upload-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            box-shadow: 0 6px 15px rgba(52, 152, 219, 0.3);
             background: linear-gradient(135deg, #2980b9, #1f6391);
         }
 
         .upload-text {
-            margin-top: 5px;
             color: #6c757d;
-            font-size: 0.85em;
+            font-size: 0.75em;
+            text-align: left;
         }
 
         .content-section {
             display: flex;
-            height: calc(100vh - 240px);
+            height: calc(100vh - 110px);
         }
 
         .editor-panel, .preview-panel {
@@ -580,7 +588,17 @@
         @media (max-width: 768px) {
             .controls-container {
                 flex-direction: column;
-                margin: 20px;
+                gap: 8px;
+                margin: 8px 10px;
+            }
+
+            .upload-section, .image-upload-section {
+                padding: 10px;
+            }
+
+            .upload-text {
+                text-align: center;
+                font-size: 0.7em;
             }
 
             .content-section {
@@ -589,11 +607,16 @@
             }
 
             .editor-panel, .preview-panel {
-                height: 400px;
+                height: 350px;
+                padding: 15px;
             }
 
             .header h1 {
-                font-size: 2em;
+                font-size: 1.1em;
+            }
+
+            .header p {
+                font-size: 0.7em;
             }
         }
     </style>
@@ -624,9 +647,10 @@
                 <div class="upload-text">
                     Carica immagini da inserire nel documento
                 </div>
-                <div class="image-gallery" id="imageGallery"></div>
             </div>
         </div>
+
+        <div class="image-gallery" id="imageGallery"></div>
 
         <div class="file-info" id="fileInfo">
             <strong>File caricato:</strong> <span id="fileName"></span> 
