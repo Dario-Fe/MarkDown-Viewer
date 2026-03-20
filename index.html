@@ -278,6 +278,25 @@
             transform: none;
         }
 
+        .youtube-btn {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(255, 0, 0, 0.3);
+            margin-right: 10px;
+        }
+
+        .youtube-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+            background: linear-gradient(135deg, #cc0000, #990000);
+        }
+
         .button-group {
             display: flex;
             align-items: center;
@@ -547,6 +566,42 @@
             padding: 5px;
         }
 
+        .youtube-modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px 0;
+        }
+
+        .youtube-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            outline: none;
+        }
+
+        .youtube-input:focus {
+            border-color: #ff0000;
+            box-shadow: 0 0 5px rgba(255, 0, 0, 0.2);
+        }
+
+        .insert-btn {
+            background: #ff0000;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .insert-btn:hover {
+            background: #cc0000;
+        }
+
         .guide-item {
             background: #f8f9fa;
             padding: 15px;
@@ -642,6 +697,7 @@
                 <h3>
                     📄 Sorgente Markdown
                 <div class="button-group">
+                    <button id="youtubeBtn" class="youtube-btn">🎥 YouTube</button>
                     <button id="guideBtn" class="guide-btn">📖 Guida</button>
                     <button class="save-btn" id="saveBtn" onclick="saveMarkdown()" disabled>
                         💾 Salva .md
@@ -662,6 +718,17 @@
                 <div class="markdown-preview" id="markdownPreview">
                     <p><em>L'anteprima formattata apparirà qui...</em></p>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="youtubeModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close" id="closeYoutubeBtn" title="Chiudi">&times;</button>
+            <h2>Inserisci video YouTube</h2>
+            <div class="youtube-modal-body">
+                <input type="text" id="youtubeUrl" class="youtube-input" placeholder="Incolla qui il link YouTube (es. https://www.youtube.com/watch?v=...)">
+                <button id="insertYoutubeBtn" class="insert-btn">Inserisci Video</button>
             </div>
         </div>
     </div>
@@ -744,6 +811,12 @@ console.log("Ciao!");
         const guideModal = document.getElementById('guideModal');
         const closeGuideBtn = document.getElementById('closeGuideBtn');
 
+        const youtubeBtn = document.getElementById('youtubeBtn');
+        const youtubeModal = document.getElementById('youtubeModal');
+        const closeYoutubeBtn = document.getElementById('closeYoutubeBtn');
+        const insertYoutubeBtn = document.getElementById('insertYoutubeBtn');
+        const youtubeUrlInput = document.getElementById('youtubeUrl');
+
         // Configure marked.js to open links in a new tab
         const renderer = new marked.Renderer();
         renderer.link = function(href, title, text) {
@@ -801,6 +874,52 @@ console.log("Ciao!");
                 guideModal.classList.remove('is-visible');
             }
         });
+
+        // Gestione modale YouTube
+        youtubeBtn.addEventListener('click', () => {
+            youtubeModal.classList.add('is-visible');
+            youtubeUrlInput.value = '';
+            youtubeUrlInput.focus();
+        });
+
+        closeYoutubeBtn.addEventListener('click', () => {
+            youtubeModal.classList.remove('is-visible');
+        });
+
+        youtubeModal.addEventListener('click', (e) => {
+            if (e.target === youtubeModal) {
+                youtubeModal.classList.remove('is-visible');
+            }
+        });
+
+        insertYoutubeBtn.addEventListener('click', () => {
+            const url = youtubeUrlInput.value;
+            const videoId = extractYoutubeId(url);
+
+            if (videoId) {
+                const iframeHtml = `<iframe width="100%" height="450" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n\n`;
+                insertAtCursor(markdownEditor, iframeHtml);
+                youtubeModal.classList.remove('is-visible');
+                updatePreview(markdownEditor.value);
+                checkForChanges();
+            } else {
+                alert('Link YouTube non valido. Per favore inserisci un URL valido.');
+            }
+        });
+
+        function extractYoutubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function insertAtCursor(textarea, text) {
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            textarea.value = textarea.value.substring(0, start) + text + textarea.value.substring(end);
+            textarea.selectionStart = textarea.selectionEnd = start + text.length;
+            textarea.focus();
+        }
 
         function handleFileLoad(event) {
             const file = event.target.files[0];
