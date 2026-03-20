@@ -897,7 +897,7 @@ console.log("Ciao!");
             const videoId = extractYoutubeId(url);
 
             if (videoId) {
-                const iframeHtml = `<iframe width="100%" height="450" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>\n\n`;
+                const iframeHtml = `<iframe width="100%" height="450" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>\n\n`;
                 insertAtCursor(markdownEditor, iframeHtml);
                 youtubeModal.classList.remove('is-visible');
                 updatePreview(markdownEditor.value);
